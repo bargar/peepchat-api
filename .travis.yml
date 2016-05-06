@@ -1,11 +1,17 @@
 language: elixir
 elixir:
-  - 1.2
+- 1.2
 otp_release:
-  - 18.2
+- 18.2
 sudo: false
 addons:
   postgresql: '9.4'
 before_script:
-# create the test database
 - psql -c 'create database peepchat_test;' -U postgres
+deploy:
+  provider: heroku
+  api_key:
+    secure: TojUouK7SvPFb8EmE9LLNNdhL1wbPan0Nt+tvpAzKUJaBtKFBql9Wkr/9lNY5nvhH5XkWSpU5hrp9sLtZy0gCrjLly9QX3QePDblv0H/rB/zivfl3GcpG2yzKLnL2kYdXxAc26w2G1Ar/attGy7VjG+u6YF9gALix648J7LWr8EV/peGcVNxYCqWjB4e+Us650529EIhcfkSctFHA/dn3ScaASnOR6zELyoI5zu7hP2GSW/oUbIReIndMl7Jn3jqNjtqGwozDqR0HOYCjNyltxLVDOl4fWWZuWXxgpLrHwvOFfQGABnNGYs08t7gN/zc0exH9ADeyKSEVQM1lhIeV00ftZVWwt0kGVALQ4AkLhIqIkma5lewx0ijDaB5FBB+pcZ2TiSHTzsk9zABLFAK/Y+7uEbUrZxTntEf6zqfgDJh65yV6ibb7XkJDK/+VrrAi3ZaUpXRBOnsQMx0mzUVTobHE+Wxi5npPsMcZyNPz+zkCkGDeAG5oUArg+KBxQlZSWM2yl7dUnLMugJd8EcIcCLnRoCb6IQfy8m42DJaa1DQIPh2QFbniAJPH5fpPtZuIJwqd0NK/7Jb4hva9yfZ5Wt6BlXKMqrvZPWaIdGZJaWHmD5fMVbibFipY05RBbry3d4EXDDAJgsW6C0AVAe9iE6FYPXxar3DQV0UeUr6hLw=
+  app: shrouded-thicket-27549
+  on:
+    repo: bargar/peepchat-api

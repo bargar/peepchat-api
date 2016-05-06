@@ -4,6 +4,6 @@ defmodule Peepchat.SessionController do
   def index(conn, _params) do
     #return some static JSON for now
     conn
-    |> json(%{status: "Ok"})
+    |> json(%{status: "Ok!"})
   end
 end
