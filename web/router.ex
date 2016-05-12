@@ -2,13 +2,28 @@ defmodule Peepchat.Router do
   use Peepchat.Web, :router
 
   pipeline :api do
-    plug :accepts, ["json"]
+    plug :accepts, ["json", "json-api"]
+  end
+
+  # authenticated requests
+  pipeline :api_auth do
+    plug :accepts, ["json", "json-api"]
+    plug Guardian.Plug.VerifyHeader
+    plug Guardian.Plug.LoadResource
   end
 
   scope "/api", Peepchat do
     pipe_through :api
 
-    # Route stuff to our SessionController
-    resources "session", SessionController, only: [:index]
+    # Registration
+    post "register", RegistrationController, :create
+
+    # Login
+    post "token", SessionController, :create, as: :login
+  end
+
+  scope "/api", Peepchat do
+    pipe_through :api_auth
+    get "/user/current", UserController, :current
   end
 end
