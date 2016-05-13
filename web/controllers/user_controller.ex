@@ -11,7 +11,7 @@ defmodule Peepchat.UserController do
   end
 
   def show(conn, %{"id" => id}) do
-    user = Repo.get!(User.id)
+    user = Repo.get!(User, id)
     render(conn, "show.json", data: user)
   end
 
