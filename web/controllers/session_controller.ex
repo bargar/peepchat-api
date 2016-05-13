@@ -45,7 +45,7 @@ defmodule Peepchat.SessionController do
   end
 
 
-  def create(conn, %{"grant_type" => _}) do
+  def create(_conn, %{"grant_type" => _}) do
     ## handle unknown grant type
     throw "Unsupported grant_type"
   end
